@@ -1,0 +1,12 @@
+- name: "Set user password via prompt, if adding user that does not exist"
+  include_tasks: add_new_user.yml
+
+- name: "Configure the admin-user account"
+  user:
+    name: "{{ admin_user_def_user_name }}"
+    groups:
+      - "{{ admin_group_def_group_name }}"
+    append: yes
+  become: true
+  become_user: root
+
