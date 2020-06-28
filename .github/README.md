@@ -1,6 +1,6 @@
 # ans-role-add-user
 
-Ansible role to add a user to a system.
+Ansible role to add a user to a system
 
 [![Release](https://img.shields.io/github/release/digimokan/ans-role-add-user.svg?label=release)](https://github.com/digimokan/ans-role-add-user/releases/latest "Latest Release Notes")
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?label=license)](LICENSE.md "Project License")
@@ -57,13 +57,20 @@ Ansible role to add a user to a system.
            name: add-user
            vars:
              user_name: "admin"
+             user_groups:
+               - "admin"
+               - "wheel"
    ```
 
 ## Role Options
 
-See the role `defaults` file for full listing:
+See the role `defaults` file for for overridable vars:
 
   * [defaults/main.yml](../defaults/main.yml)
+
+Optionally, parameterize the role by defining these vars:
+
+  * `user_groups`: a _list_ of existing groups to add user to
 
 ## Contributing
 

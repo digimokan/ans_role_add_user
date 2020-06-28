@@ -1,0 +1,8 @@
+- name: "Add {{ user_name }} to list of groups"
+  user:
+    name: "{{ user_name }}"
+    groups: user_groups
+    append: yes
+  become: true
+  become_user: root
+

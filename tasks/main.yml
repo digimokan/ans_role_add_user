@@ -1,12 +1,8 @@
-- name: "Set user password via prompt, if adding user that does not exist"
-  include_tasks: add_new_user.yml
+- name: "Set user password via prompt, if user {{ user_name }} does not exist"
+  include_tasks: user_password.yml
+  when: set_initial_user_password
 
-- name: "Configure the admin-user account"
-  user:
-    name: "{{ admin_user_def_user_name }}"
-    groups:
-      - "{{ admin_group_def_group_name }}"
-    append: yes
-  become: true
-  become_user: root
+- name: "Add {{ user_name }} to specified groups"
+  include_tasks: user_groups.yml
+  when: user_groups is defined
 
