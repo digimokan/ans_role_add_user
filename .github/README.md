@@ -55,11 +55,11 @@ Ansible role to add a user to a system
        - name: "Add admin user to system"
          include_role:
            name: add-user
-           vars:
-             user_name: "admin"
-             user_groups:
-               - "admin"
-               - "wheel"
+         vars:
+           user_name: "admin"
+           user_groups:
+             - "admin"
+             - "wheel"
    ```
 
 ## Role Options
