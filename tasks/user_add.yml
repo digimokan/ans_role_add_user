@@ -1,4 +1,4 @@
-- name: "Add {{ user_name }} to system"
+- name: "Add user '{{ user_name }}' to system"
   user:
     name: "{{ user_name }}"
     state: present

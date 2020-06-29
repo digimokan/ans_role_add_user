@@ -1,4 +1,4 @@
-- name: "Add {{ user_name }} to list of groups"
+- name: "Add user '{{ user_name }}' to list of groups"
   user:
     name: "{{ user_name }}"
     groups: "{{ user_groups }}"
