@@ -64,11 +64,11 @@ Ansible role to add a user to a system
 
 ## Role Options
 
-See the role `defaults` file for for overridable vars:
+See the role `defaults` file for overridable vars:
 
   * [defaults/main.yml](../defaults/main.yml)
 
-Optionally, parameterize the role by defining these vars:
+Define these _optional_ vars for the role:
 
   * `user_groups`: a _list_ of existing groups to add user to
 
