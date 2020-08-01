@@ -58,7 +58,6 @@ Ansible role to add a user to a system
          vars:
            user_name: "admin"
            user_groups:
-             - "admin"
              - "wheel"
    ```
 
@@ -70,7 +69,8 @@ See the role `defaults` file for overridable vars:
 
 Define these _optional_ vars for the role:
 
-  * `user_groups`: a _list_ of existing groups to add user to
+  * `user_groups`: a _list_ of existing groups to add user to (_NOTE: user will
+    be in `user_name` group by default_).
 
 ## Contributing
 
