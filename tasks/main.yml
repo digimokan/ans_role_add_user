@@ -1,11 +1,14 @@
-- name: "Set {{ user_name }} password via prompt (only for newly-created user)"
+- name: "Check if user '{{ user_name }}' exists on the system"
+  include_tasks: check_user_exists.yml
+
+- name: "Add user '{{ user_name }}' to system"
+  include_tasks: user_add.yml
+
+- name: "Set {{ user_name }} password via prompt"
   include_tasks: user_password.yml
   when: set_initial_user_password
 
 - name: "Add {{ user_name }} to specified groups"
   include_tasks: user_groups.yml
   when: user_groups is defined
-
-- name: "Add {{ user_name }} to system, if user does not exist"
-  include_tasks: user_add.yml
 

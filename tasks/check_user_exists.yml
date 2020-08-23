@@ -1,0 +1,7 @@
+- name: "Check if user '{{ user_name }}' exists"
+  command: getent passwd {{ user_name|quote }}
+  # NOTE: getent returns 0 when key bound, and 2 when key not found in database
+  register: user_exists
+  changed_when: user_exists.rc == 2
+  failed_when: user_exists.rc != 0 and user_exists.rc != 2
+
