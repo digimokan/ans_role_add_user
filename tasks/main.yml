@@ -4,11 +4,11 @@
 - name: "Add user '{{ user_name }}' to system"
   include_tasks: user_add.yml
 
-- name: "Set {{ user_name }} password via prompt"
+- name: "Set user '{{ user_name }}' password via prompt"
   include_tasks: user_password.yml
   when: set_initial_user_password
 
-- name: "Add {{ user_name }} to specified groups"
+- name: "Add user '{{ user_name }}' to specified groups"
   include_tasks: user_groups.yml
   when: user_groups is defined
 
