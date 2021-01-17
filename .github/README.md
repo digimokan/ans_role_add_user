@@ -1,8 +1,8 @@
-# ans-role-add-user
+# ans_role_add_user
 
 Ansible role to add a user to a system
 
-[![Release](https://img.shields.io/github/release/digimokan/ans-role-add-user.svg?label=release)](https://github.com/digimokan/ans-role-add-user/releases/latest "Latest Release Notes")
+[![Release](https://img.shields.io/github/release/digimokan/ans_role_add_user.svg?label=release)](https://github.com/digimokan/ans_role_add_user/releases/latest "Latest Release Notes")
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?label=license)](LICENSE.md "Project License")
 
 ## Table Of Contents
@@ -32,9 +32,7 @@ Ansible role to add a user to a system
 
    ```yaml
    # requirements.yml
-   - src: https://github.com/digimokan/ans-role-add-user
-     version: master
-     name: add-user
+   - src: https://github.com/digimokan/ans_role_add_user
    ```
 
 2. From the project root directory, install/download the role:
@@ -54,7 +52,7 @@ Ansible role to add a user to a system
      tasks:
        - name: "Add admin user to system"
          include_role:
-           name: add-user
+           name: ans_role_add_user
          vars:
            user_name: "admin"
            user_groups:
@@ -75,7 +73,7 @@ Define these _optional_ vars for the role:
 ## Contributing
 
 * Feel free to report a bug or propose a feature by opening a new
-  [Issue](https://github.com/digimokan/ans-role-add-user/issues).
+  [Issue](https://github.com/digimokan/ans_role_add_user/issues).
 * Follow the project's [Contributing](CONTRIBUTING.md) guidelines.
 * Respect the project's [Code Of Conduct](CODE_OF_CONDUCT.md).
 
