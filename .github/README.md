@@ -51,7 +51,7 @@ Ansible role to add a user to a system
      connection: local
      tasks:
        - name: "Add admin user to system"
-         include_role:
+         ansible.builtin.include_role:
            name: ans_role_add_user
          vars:
            user_name: "admin"

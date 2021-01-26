@@ -4,6 +4,9 @@ user_name: "admin"
 # add the new user as a "system" user (i.e. a user with UID >= 1000)
 is_system_user: false
 
+# create a directory in /home for the user
+create_home_dir: true
+
 # set user password via prompt (if adding user that does not exist)
 set_initial_user_password: true
 

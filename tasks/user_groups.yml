@@ -1,5 +1,5 @@
 - name: "Add user '{{ user_name }}' to list of groups"
-  user:
+  ansible.builtin.user:
     name: "{{ user_name }}"
     groups: "{{ user_groups }}"
     append: yes
