@@ -1,7 +1,7 @@
 - name: "Add user '{{ user_name }}' to list of groups"
   ansible.builtin.user:
     name: "{{ user_name }}"
-    groups: "{{ user_groups | list }}"
+    groups: "{{ user_groups if (user_groups is list) else [ user_groups ] }}"
     append: yes
   become: true
   become_user: root
