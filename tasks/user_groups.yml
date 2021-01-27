@@ -1,8 +1,10 @@
-- name: "Add user '{{ user_name }}' to groups {{ user_groups }}"
+- name: "Add user '{{ user_name }}' to groups {{ groups_list }}"
   ansible.builtin.user:
     name: "{{ user_name }}"
-    groups: "{{ user_groups if (user_groups is iterable) else [ user_groups ] }}"
+    groups: "{{ groups_list }}"
     append: yes
+  vars:
+    groups_list: "{{ user_groups if (user_groups is iterable) else [ user_groups ] }}"
   become: true
   become_user: root
 
