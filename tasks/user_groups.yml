@@ -1,4 +1,4 @@
-- name: "Add user '{{ user_name }}' to list of groups"
+- name: "Add user '{{ user_name }}' to groups '{{ user_groups }}'"
   ansible.builtin.user:
     name: "{{ user_name }}"
     groups: "{{ user_groups if (user_groups is iterable) else [ user_groups ] }}"
