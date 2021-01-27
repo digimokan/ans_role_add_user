@@ -67,8 +67,8 @@ See the role `defaults` file for overridable vars:
 
 Define these _optional_ vars for the role:
 
-  * `user_groups`: a _list_ of existing groups to add user to (_NOTE: user will
-    be in primary group `user_name` by default_).
+  * `user_groups`: a _string_, or _list_, of existing group(s) to add user to
+    (_NOTE: user will be in primary group `user_name` by default_).
 
 ## Contributing
 
