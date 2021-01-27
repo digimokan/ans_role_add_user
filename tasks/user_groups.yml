@@ -4,7 +4,7 @@
     groups: "{{ groups_list }}"
     append: yes
   vars:
-    groups_list: "{{ user_groups if (user_groups is iterable) else user_groups.split('\n') }}"
+    groups_list: "{{ [ user_groups ] if (user_groups is string) else user_groups }}"
   become: true
   become_user: root
 
