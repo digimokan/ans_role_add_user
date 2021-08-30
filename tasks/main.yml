@@ -12,3 +12,7 @@
   ansible.builtin.include_tasks: user_groups.yml
   when: user_groups is defined
 
+- name: "Create home dir for user '{{ user_name }}'"
+  ansible.builtin.include_tasks: create_home_dir.yml
+  when: create_home_dir is defined
+

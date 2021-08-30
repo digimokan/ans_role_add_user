@@ -12,6 +12,7 @@ Ansible role to add a user to a system
 * [Quick Start](#quick-start)
     * [Use From Playbook](#use-from-playbook)
 * [Role Options](#role-options)
+* [Role Dependencies](#role-dependencies)
 * [Contributing](#contributing)
 
 ## Purpose
@@ -68,7 +69,11 @@ See the role `defaults` file for overridable vars:
 Define these _optional_ vars for the role:
 
   * `user_groups`: a _string_, or _list_, of existing group(s) to add user to
-    (_NOTE: user will be in primary group `user_name` by default_).
+    (NOTE: user will be in primary group `user_name` by default).
+
+## Role Dependencies
+
+* [ans_role_create_filesystem_dataset](https://github.com/digimokan/ans_role_create_filesystem_dataset)
 
 ## Contributing
 

@@ -4,12 +4,15 @@ user_name: "admin"
 # add the new user as a "system" user (i.e. a user with UID >= 1000)
 is_system_user: false
 
-# create a directory in /home for the user
-create_home_dir: true
-
 # set user password via prompt (if adding user that does not exist)
 set_initial_user_password: true
 
 # the password hashing algorithm to use for the user's password
 password_hash_algorithm: "sha512"
+
+# create a directory in /home for the user
+create_home_dir: true
+
+# if create_home_dir is true, then make the home dir a zfs filesystem-dataset
+use_zfs_dataset_for_home_dir: false
 

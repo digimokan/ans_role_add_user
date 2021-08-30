@@ -9,5 +9,6 @@ galaxy_info:
         - all
   galaxy_tags:
     - archlinux
+    - freebsd
     - user
 
