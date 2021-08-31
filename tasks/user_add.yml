@@ -3,7 +3,7 @@
     name: "{{ user_name }}"
     system: "{{ is_system_user }}"
     state: present
-    create_home: false
+    create_home: "{{ create_home_dir }}"
   become: true
   become_user: root
 

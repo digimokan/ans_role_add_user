@@ -16,9 +16,10 @@
 #   become: true
 #   become_user: root
 
-- name: "Create '/home/{{ user_name }}', or just set correct permissions on it"
-  ansible.builtin.user:
-    name: "{{ user_name }}"
-    create_home: true
-  become: true
-  become_user: root
+# - name: "Create '/home/{{ user_name }}', or just set correct permissions on it"
+#   ansible.builtin.user:
+#     name: "{{ user_name }}"
+#     create_home: true
+#   become: true
+#   become_user: root
+

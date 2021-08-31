@@ -3,7 +3,6 @@
     name: "{{ user_name }}"
     groups: "{{ groups_list }}"
     append: yes
-    create_home: false
   vars:
     groups_list: "{{ [ user_groups ] if (user_groups is string) else user_groups }}"
   become: true
