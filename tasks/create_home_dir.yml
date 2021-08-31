@@ -4,7 +4,7 @@
   vars:
     pool: "{{ zfs_pool }}"
     dataset_path: "home/{{ user_name }}"
-  when: use_zfs_dataset_for_home_dir is defined
+  when: use_zfs_dataset_for_home_dir
 
 - name: "Create '/home/{{ user_name }}', or just set correct permissions on it"
   ansible.builtin.file:
