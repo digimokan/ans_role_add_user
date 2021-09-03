@@ -6,20 +6,13 @@
     dataset_path: "home/{{ user_name }}"
   when: use_zfs_dataset_for_home_dir
 
-# - name: "Create '/home/{{ user_name }}', or just set correct permissions on it"
-#   ansible.builtin.file:
-#     path: "/home/{{ user_name }}"
-#     owner: "{{ user_name }}"
-#     group: "{{ user_name }}"
-#     mode: '710'
-#     state: directory
-#   become: true
-#   become_user: root
-
-# - name: "Create '/home/{{ user_name }}', or just set correct permissions on it"
-#   ansible.builtin.user:
-#     name: "{{ user_name }}"
-#     create_home: true
-#   become: true
-#   become_user: root
+- name: "Create '/home/{{ user_name }}', or just set correct permissions on it"
+  ansible.builtin.file:
+    path: "/home/{{ user_name }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '710'
+    state: directory
+  become: true
+  become_user: root
 
