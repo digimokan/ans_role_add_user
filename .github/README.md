@@ -80,7 +80,7 @@ Define these _optional_ vars for the role:
 ## Role Dependencies
 
 * [ans_role_create_filesystem_dataset](https://github.com/digimokan/ans_role_create_filesystem_dataset)
-* [ans_role_ans_role_config_shell](https://github.com/digimokan/ans_role_ans_role_config_shell)
+* [ans_role_config_shell](https://github.com/digimokan/ans_role_config_shell)
 
 ## Contributing
 
