@@ -8,6 +8,7 @@ Ansible role to add a user to a system
 ## Table Of Contents
 
 * [Purpose](#purpose)
+* [Requirements](#requirements)
 * [Supported Operating Systems](#supported-operating-systems)
 * [Quick Start](#quick-start)
     * [Use From Playbook](#use-from-playbook)
@@ -20,6 +21,11 @@ Ansible role to add a user to a system
 * Add a user to a system.
 * Optionally set user password (via prompt), if password has never been set.
 * Optionally add user to groups.
+
+## Requirements
+
+* A zfs dataset created for `/home/user_name` (if
+  [`use_zfs_dataset_for_home_dir`](../defaults/main.yml) is set to `true`)
 
 ## Supported Operating Systems
 
