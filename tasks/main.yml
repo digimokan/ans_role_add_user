@@ -16,3 +16,7 @@
   ansible.builtin.include_tasks: create_home_dir.yml
   when: create_home_dir
 
+- name: "Create shell startup files for user '{{ user_name }}'"
+  ansible.builtin.include_tasks: create_shell_startup_files.yml
+  when: create_home_dir
+
