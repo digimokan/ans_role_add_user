@@ -3,10 +3,11 @@
 
 - name: "Add user '{{ user_name }}' to system"
   ansible.builtin.include_tasks: user_add.yml
+  when: user_exists is changed
 
 - name: "Set user '{{ user_name }}' password via prompt"
   ansible.builtin.include_tasks: user_password.yml
-  when: set_initial_user_password
+  when: (user_exists is changed) and set_initial_user_password
 
 - name: "Add user '{{ user_name }}' to specified groups"
   ansible.builtin.include_tasks: user_groups.yml
