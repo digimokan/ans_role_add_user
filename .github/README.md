@@ -76,6 +76,7 @@ Define these _optional_ vars for the role:
 
   * `user_groups`: a _string_, or _list_, of existing group(s) to add user to
     (NOTE: user will be in primary group `user_name` by default).
+  * `comment`: the `/user/password` _GECOS_ field, used by apps such as LightDM.
 
 ## Role Dependencies
 
