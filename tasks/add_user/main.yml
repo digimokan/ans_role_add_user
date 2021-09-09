@@ -1,0 +1,8 @@
+- name: "Create new user for Linux"
+  ansible.builtin.include_tasks: archlinux/main.yml
+  when: ansible_system == "Linux"
+
+- name: "Create new user for FreeBSD"
+  ansible.builtin.include_tasks: freebsd/main.yml
+  when: ansible_os_family == "FreeBSD"
+

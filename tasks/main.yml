@@ -1,27 +1,27 @@
 - name: "Check if user '{{ user_name }}' exists on the system"
-  ansible.builtin.include_tasks: check_user_exists.yml
+  ansible.builtin.include_tasks: check_user_exists/main.yml
 
 - name: "Add user '{{ user_name }}' to system"
-  ansible.builtin.include_tasks: user_add.yml
+  ansible.builtin.include_tasks: add_user/main.yml
   when: user_exists is changed
 
 - name: "Set user '{{ user_name }}' password via prompt"
-  ansible.builtin.include_tasks: user_password.yml
+  ansible.builtin.include_tasks: set_password/main.yml
   when: (user_exists is changed) and set_initial_user_password
 
 - name: "Add user '{{ user_name }}' to specified groups"
-  ansible.builtin.include_tasks: user_groups.yml
+  ansible.builtin.include_tasks: add_to_groups/main.yml
   when: user_groups is defined
 
 - name: "Create home dir for user '{{ user_name }}'"
-  ansible.builtin.include_tasks: create_home_dir.yml
+  ansible.builtin.include_tasks: create_home_dir/main.yml
   when: create_home_dir
 
 - name: "Set comment for user '{{ user_name }}'"
-  ansible.builtin.include_tasks: set_comment.yml
+  ansible.builtin.include_tasks: set_comment/main.yml
   when: comment is defined
 
 - name: "Create shell startup files for user '{{ user_name }}'"
-  ansible.builtin.include_tasks: create_shell_startup_files.yml
+  ansible.builtin.include_tasks: create_shell_files/main.yml
   when: create_home_dir
 
