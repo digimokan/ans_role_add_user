@@ -1,6 +1,6 @@
 # FreeBSD adduser command does not support creating user with "system" UID
 - name: "Find first available UID in the range of 501 to 999"
-  ansible.builtin.command:
+  ansible.builtin.shell:
     cmd: awk -F: '{uid[$3]=1}END{for(x=501; x<=999; x++) {if(uid[x] != ""){}else{print x; exit;}}}' /etc/passwd
     register: find_uid
   when: is_system_user
