@@ -9,7 +9,7 @@
         mode: '755'
         force: yes
     - name: "Find first available UID in the range of {{ min_uid }} to {{ max_uid }}"
-      ansible.builtin.script:
+      ansible.builtin.shell:
         cmd: "{{ script_path }} '{{ min_uid }}' '{{ max_uid }}'"
         register: find_uid
     - name: "Check that {{ script_name }} was able to find a free UID"
