@@ -12,17 +12,13 @@
 ################################################################################
 
 awk -F : -v min_uid="${1}" -v max_uid="${2}" '
-  BEGIN {
-    found = "false"
-  }
-  { uid[$3] = 1}
+  { uid[$3] = 1 }
   END {
     for (x = min_uid; x <= max_uid; x++) {
       if (uid[x] != "") { }
-      else { print x; found = "true"; }
+      else { print x; exit 0; }
     }
-    if (found == "true") { exit 0; }
-    else { exit 1; }
+    exit 1;
   }
 ' /etc/passwd
 
