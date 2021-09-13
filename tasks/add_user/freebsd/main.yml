@@ -11,7 +11,7 @@
     - name: "Find first available UID in the range of {{ min_uid }} to {{ max_uid }}"
       ansible.builtin.command:
         cmd: "{{ script_path }} '{{ min_uid }}' '{{ max_uid }}'"
-        register: find_uid
+      register: find_uid
     - name: "Check that {{ script_name }} was able to find a free UID"
       assert:
         that:
