@@ -8,24 +8,18 @@ Ansible role to add a user to a system
 ## Table Of Contents
 
 * [Purpose](#purpose)
-* [Requirements](#requirements)
 * [Supported Operating Systems](#supported-operating-systems)
 * [Quick Start](#quick-start)
     * [Use From Playbook](#use-from-playbook)
 * [Role Options](#role-options)
-* [Role Dependencies](#role-dependencies)
 * [Contributing](#contributing)
 
 ## Purpose
 
 * Add a user to a system.
 * Optionally set user password (via prompt), if password has never been set.
-* Optionally add user to groups.
-
-## Requirements
-
-* A zfs dataset created for `/home/user_name` (if
-  [`use_zfs_dataset_for_home_dir`](../defaults/main.yml) is set to `true`)
+* Optionally add user to groups (note: groups must exist).
+* Optionally create a home dir for user.
 
 ## Supported Operating Systems
 
@@ -77,11 +71,6 @@ Define these _optional_ vars for the role:
   * `user_groups`: a _string_, or _list_, of existing group(s) to add user to
     (NOTE: user will be in primary group `user_name` by default).
   * `comment`: the `/user/password` _GECOS_ field, used by apps such as LightDM.
-
-## Role Dependencies
-
-* [ans_role_create_filesystem_dataset](https://github.com/digimokan/ans_role_create_filesystem_dataset)
-* [ans_role_config_shell](https://github.com/digimokan/ans_role_config_shell)
 
 ## Contributing
 

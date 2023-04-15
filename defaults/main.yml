@@ -13,6 +13,3 @@ password_hash_algorithm: "sha512"
 # create a directory in /home for the user
 create_home_dir: false
 
-# if create_home_dir is true, then make the home dir a zfs filesystem-dataset
-use_zfs_dataset_for_home_dir: false
-
