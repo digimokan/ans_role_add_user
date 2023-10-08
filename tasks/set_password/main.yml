@@ -3,7 +3,7 @@
     - name: "Get user '{{ user_name }}' password, via shell prompt"
       ansible.builtin.pause:
         prompt: "Enter the new password for user '{{ user_name }}'"
-        echo: yes
+        echo: true
       register: new_password
     - name: "Set user '{{ user_name }}' password, using user-input + random-salt"
       ansible.builtin.user:

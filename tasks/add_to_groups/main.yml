@@ -2,7 +2,7 @@
   ansible.builtin.user:
     name: "{{ user_name }}"
     groups: "{{ groups_list }}"
-    append: yes
+    append: true
     create_home: false
   vars:
     groups_list: "{{ [ user_groups ] if (user_groups is string) else user_groups }}"

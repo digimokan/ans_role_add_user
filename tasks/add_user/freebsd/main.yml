@@ -7,7 +7,7 @@
         src: "{{ script_name }}.j2"
         owner: 'root'
         mode: '755'
-        force: yes
+        force: true
     - name: "Find first available UID in the range of {{ min_uid }} to {{ max_uid }}"
       ansible.builtin.command:
         cmd: "{{ script_path }} '{{ min_uid }}' '{{ max_uid }}'"
