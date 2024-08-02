@@ -1,9 +1,0 @@
-- name: "Add new user '{{ user_name }}' to system"
-  ansible.builtin.user:
-    name: "{{ user_name }}"
-    system: "{{ is_system_user }}"
-    state: present
-    create_home: false
-  become: true
-  become_user: root
-

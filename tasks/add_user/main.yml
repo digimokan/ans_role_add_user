@@ -1,8 +1,25 @@
-- name: "Create new user for Linux"
-  ansible.builtin.include_tasks: archlinux/main.yml
-  when: ansible_system == "Linux"
-
-- name: "Create new user for FreeBSD"
+- name: "Configure user account for FreeBSD, as required"
   ansible.builtin.include_tasks: freebsd/main.yml
   when: ansible_os_family == "FreeBSD"
+
+- name: "Add user '{{ cfg_user_name }}' to the system, and configure user account"
+  ansible.builtin.user:
+    name: "{{ cfg_user_name }}"
+    uid: "{{ freebsd_found_system_user_uid.stdout | default(omit) }}"
+    # ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
+    password: "{{ cfg_user_password | password_hash(salt: 65534 | random(seed=inventory_hostname) | string) | default(omit) }}"
+    comment: "{{ cfg_user_comment }}"
+    group: "{{ cfg_user_primary_group }}"
+    groups: "{{ cfg_user_groups }}"
+    create_home: "{{ cfg_user_create_home_dir_in_existing_filesystem }}"
+    home: "{{ cfg_user_path_to_home_dir }}"
+    state: present
+    register: ret_user_fields
+  become: true
+  become_user: root
+
+- name: "Check that user '{{ cfg_user_name }}' password has been set"
+  ansible.builtin.fail:
+    msg: "No user password has been set. Use cfg_user_password role var to set one."
+  when: ret_user_fields.password is defined
 

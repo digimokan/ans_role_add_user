@@ -1,0 +1,5 @@
+- name: "Check python passlib module installed, required for ansible.builtin.password_hash"
+  ansible.builtin.command:
+    cmd: "{{ cfg_user_check_passlib_installed_cmd }}"
+  changed_when: false
+

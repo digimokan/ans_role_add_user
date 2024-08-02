@@ -11,7 +11,7 @@
     - name: "Find first available UID in the range of {{ min_uid }} to {{ max_uid }}"
       ansible.builtin.command:
         cmd: "{{ script_path }} '{{ min_uid }}' '{{ max_uid }}'"
-      register: find_uid
+      register: freebsd_found_system_user_uid
   vars:
     script_name: 'find_first_avail_uid_in_range'
     script_path: "/tmp/{{ script_name }}.sh"
@@ -20,13 +20,4 @@
   become: true
   become_user: root
   when: is_system_user
-
-- name: "Add new user '{{ user_name }}' to system"
-  ansible.builtin.user:
-    name: "{{ user_name }}"
-    uid: "{{ find_uid.stdout | default(omit) }}"
-    state: present
-    create_home: false
-  become: true
-  become_user: root
 

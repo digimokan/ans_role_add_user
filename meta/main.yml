@@ -2,13 +2,20 @@ galaxy_info:
   author: digimokan
   description: "Add a UNIX user to the system"
   license: "MIT"
-  min_ansible_version: 2.6
+  min_ansible_version: 2.7
   platforms:
     - name: Archlinux
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: FreeBSD
+      versions:
+        - all
   galaxy_tags:
     - archlinux
+    - ubuntu
     - freebsd
     - user
 

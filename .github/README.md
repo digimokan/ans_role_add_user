@@ -1,8 +1,8 @@
-# ans_role_add_user
+# ans_role_config_user
 
-Ansible role to add a user to a system
+Ansible role to add a user to the system and configure user account.
 
-[![Release](https://img.shields.io/github/release/digimokan/ans_role_add_user.svg?label=release)](https://github.com/digimokan/ans_role_add_user/releases/latest "Latest Release Notes")
+[![Release](https://img.shields.io/github/release/digimokan/ans_role_config_user.svg?label=release)](https://github.com/digimokan/ans_role_config_user/releases/latest "Latest Release Notes")
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?label=license)](LICENSE.md "Project License")
 
 ## Table Of Contents
@@ -16,14 +16,18 @@ Ansible role to add a user to a system
 
 ## Purpose
 
-* Add a user to a system.
-* Optionally set user password (via prompt), if password has never been set.
-* Optionally add user to groups (note: groups must exist).
-* Optionally create a home dir for user.
+* Add a user to the system.
+* If defined, set user password.
+* Check that user _has_ set a password at some point.
+* Set user's primary group.
+* Set additional groups that user is a member of (note: groups must exist).
+* Optionally, on user creation, create a home dir for user.
 
 ## Supported Operating Systems
 
-* Any Linux distribution.
+* Ubuntu
+* Arch Linux
+* FreeBSD
 
 ## Quick Start
 
@@ -33,7 +37,7 @@ Ansible role to add a user to a system
 
    ```yaml
    # requirements.yml
-   - src: https://github.com/digimokan/ans_role_add_user
+   - src: https://github.com/digimokan/ans_role_config_user
    ```
 
 2. From the project root directory, install/download the role:
@@ -51,31 +55,33 @@ Ansible role to add a user to a system
    - hosts: localhost
      connection: local
      tasks:
-       - name: "Add admin user to system"
+       - name: "Add and configure user 'admin'"
          ansible.builtin.include_role:
-           name: ans_role_add_user
+           name: ans_role_config_user
          vars:
-           user_name: "admin"
-           user_groups:
+           cfg_user_name: "admin"
+           cfg_user_primary_group: "admin"
+           cfg_user_groups:
              - "wheel"
+           cfg_user_create_home_dir_in_existing_filesystem: false
+           cfg_user_path_to_home_dir: "/home/admin"
+           cfg_user_comment: "admin"
    ```
 
 ## Role Options
 
-See the role `defaults` file for overridable vars:
+Dependencies:
 
-  * [defaults/main.yml](../defaults/main.yml)
+  * [defaults/dependencies.yml](../defaults/dependencies.yml)
 
-Define these _optional_ vars for the role:
+Settings:
 
-  * `user_groups`: a _string_, or _list_, of existing group(s) to add user to
-    (NOTE: user will be in primary group `user_name` by default).
-  * `comment`: the `/user/password` _GECOS_ field, used by apps such as LightDM.
+  * [defaults/settings.yml](../defaults/settings.yml)
 
 ## Contributing
 
 * Feel free to report a bug or propose a feature by opening a new
-  [Issue](https://github.com/digimokan/ans_role_add_user/issues).
+  [Issue](https://github.com/digimokan/ans_role_config_user/issues).
 * Follow the project's [Contributing](CONTRIBUTING.md) guidelines.
 * Respect the project's [Code Of Conduct](CODE_OF_CONDUCT.md).
 

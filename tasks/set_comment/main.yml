@@ -1,8 +1,0 @@
-- name: "Set comment '{{ comment }}' for user '{{ user_name }}'"
-  ansible.builtin.user:
-    name: "{{ user_name }}"
-    comment: "{{ comment }}"
-    create_home: false
-  become: true
-  become_user: root
-

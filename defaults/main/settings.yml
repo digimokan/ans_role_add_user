@@ -1,0 +1,25 @@
+# user-name
+cfg_user_name: "admin"
+
+# on user creation, add user as a "system" user (i.e. a user with UID >= 1000)
+cfg_user_is_system_user: false
+
+# when defined, the role will set/update the password
+# when undefined, the role will check if a password has already been set
+# cfg_user_password: 'mypassword12345'
+
+# set the user's primary group
+cfg_user_primary_group: "{{ cfg_user_name }}"
+
+# make the user a member of ONLY these groups (does not affect primary group)
+cfg_user_groups: []
+
+# on user creation, create /home/user2 directory in the existing filesystem
+cfg_user_create_home_dir_in_existing_filesystem: false
+
+# set the path to the user's home dir in the `/user/password` file
+cfg_user_path_to_home_dir: ''
+
+# _GECOS_ field in `/user/password` file, used by apps such as LightDM
+cfg_user_comment: ''
+
