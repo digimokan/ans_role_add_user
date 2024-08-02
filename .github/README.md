@@ -72,11 +72,11 @@ Ansible role to add a user to the system and configure user account.
 
 Dependencies:
 
-  * [defaults/dependencies.yml](../defaults/dependencies.yml)
+  * [defaults/main/dependencies.yml](../defaults/dependencies.yml)
 
 Settings:
 
-  * [defaults/settings.yml](../defaults/settings.yml)
+  * [defaults/main/settings.yml](../defaults/settings.yml)
 
 ## Contributing
 
