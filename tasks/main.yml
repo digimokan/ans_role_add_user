@@ -1,5 +1,5 @@
-- name: "Check if that required dependencies are installed on the system"
-  ansible.builtin.include_tasks: check_deps/main.yml
+# - name: "Check if that required dependencies are installed on the system"
+#   ansible.builtin.include_tasks: check_deps/main.yml
 
 - name: "Add and configure user '{{ cfg_user_name }}'"
   ansible.builtin.include_tasks: add_user/main.yml
