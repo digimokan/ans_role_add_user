@@ -19,7 +19,7 @@
     create_home: "{{ cfg_user_create_home_dir_in_existing_filesystem }}"
     home: "{{ cfg_user_path_to_home_dir }}"
     state: present
-    register: ret_user_fields
+  register: ret_user_fields
   become: true
   become_user: root
 
