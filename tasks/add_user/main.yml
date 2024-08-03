@@ -28,11 +28,11 @@
     name: "{{ cfg_user_name }}"
     uid: "{{ freebsd_found_system_user_uid.stdout | default(omit) }}"
     password: "{{ hashed_salted_password | default(omit) }}"
-    comment: "{{ cfg_user_comment }}"
     group: "{{ cfg_user_primary_group }}"
     groups: "{{ cfg_user_groups }}"
     create_home: "{{ cfg_user_create_home_dir_in_existing_filesystem }}"
     home: "{{ cfg_user_path_to_home_dir }}"
+    comment: "{{ cfg_user_comment }}"
     state: present
   become: true
   become_user: root
