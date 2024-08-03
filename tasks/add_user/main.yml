@@ -23,6 +23,10 @@
   become: true
   become_user: root
 
+- name: "Print ret passwd"
+  ansible.builtin.debug:
+    var: ret_user_fields
+
 - name: "Check that user '{{ cfg_user_name }}' password has been set"
   ansible.builtin.fail:
     msg: "No user password has been set. Use cfg_user_password role var to set one."
