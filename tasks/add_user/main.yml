@@ -2,8 +2,23 @@
   ansible.builtin.include_tasks: freebsd/main.yml
   when: ansible_os_family == "FreeBSD"
 
+- name: "Check if user '{{ cfg_user_name }}' exists"
+  ansible.builtin.command: getent passwd {{ cfg_user_name|quote }}
+  # NOTE: getent returns 0 when key found, and 2 when key not found in database
+  register: user_exists
+  changed_when: user_exists.rc == 2
+  failed_when: user_exists.rc != 0 and user_exists.rc != 2
+
+- name: "When user '{{ cfg_user_name }}' does not yet exist, check that cfg_user_password is defined"
+  ansible.builtin.fail:
+    msg: "Since user does not exist, you must define cfg_user_password to set initial user password."
+  when: (user_exists is changed) and
+        (cfg_user_password is not defined)
+
 - name: "Calculate hashed, salted password from input cfg_user_password var"
   # ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
+  # note: ansible.builtin.password_hash says passlib or crypt pthon mods must be installed,
+  #       and it appears that crypt is installed by default with ansible
   ansible.builtin.set_fact:
     hashed_salted_password: "{{ cfg_user_password | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}"
   when: cfg_user_password is defined
@@ -19,16 +34,6 @@
     create_home: "{{ cfg_user_create_home_dir_in_existing_filesystem }}"
     home: "{{ cfg_user_path_to_home_dir }}"
     state: present
-  register: ret_user_fields
   become: true
   become_user: root
-
-- name: "Print ret passwd"
-  ansible.builtin.debug:
-    var: ret_user_fields
-
-- name: "Check that user '{{ cfg_user_name }}' password has been set"
-  ansible.builtin.fail:
-    msg: "No user password has been set. Use cfg_user_password role var to set one."
-  when: ret_user_fields.password is defined
 
