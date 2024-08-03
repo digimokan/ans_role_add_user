@@ -19,5 +19,5 @@
     max_uid: '999'
   become: true
   become_user: root
-  when: is_system_user
+  when: cfg_user_is_system_user
 
