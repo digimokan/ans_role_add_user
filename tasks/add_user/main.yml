@@ -7,7 +7,7 @@
     name: "{{ cfg_user_name }}"
     uid: "{{ freebsd_found_system_user_uid.stdout | default(omit) }}"
     # ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
-    password: "{{ cfg_user_password | ansible.builtin.password_hash(salt=65534 | random(seed=inventory_hostname) | string) | default(omit) }}"
+    password: "{{ cfg_user_password | ansible.builtin.password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) | default(omit) }}"
     comment: "{{ cfg_user_comment }}"
     group: "{{ cfg_user_primary_group }}"
     groups: "{{ cfg_user_groups }}"
