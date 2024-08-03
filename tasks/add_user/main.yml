@@ -2,12 +2,17 @@
   ansible.builtin.include_tasks: freebsd/main.yml
   when: ansible_os_family == "FreeBSD"
 
+- name: "Calculate hashed, salted password from input cfg_user_password var"
+  # ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
+  ansible.builtin.set_fact:
+    hashed_salted_password: "{{ cfg_user_password | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}"
+  when: cfg_user_password is defined
+
 - name: "Add user '{{ cfg_user_name }}' to the system, and configure user account"
   ansible.builtin.user:
     name: "{{ cfg_user_name }}"
     uid: "{{ freebsd_found_system_user_uid.stdout | default(omit) }}"
-    # ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
-    password: "{{ cfg_user_password | ansible.builtin.password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) | default(omit) }}"
+    password: "{{ hashed_salted_password | default(omit) }}"
     comment: "{{ cfg_user_comment }}"
     group: "{{ cfg_user_primary_group }}"
     groups: "{{ cfg_user_groups }}"
