@@ -1,4 +1,4 @@
-  # FreeBSD adduser command does not support creating user with "system" UID
+# FreeBSD adduser command does not support creating user with "system" UID
 - name: "Search the /etc/passwd file to find an available 'system user' UID"
   block:
     - name: "Create '{{ script_name }}.sh' helper script"
@@ -19,5 +19,5 @@
     max_uid: '999'
   become: true
   become_user: root
-  when: cfg_user_is_system_user
+  when: ansible_os_family == "FreeBSD"
 

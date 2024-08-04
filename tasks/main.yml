@@ -1,6 +1,10 @@
-- name: "Check if that required dependencies are installed on the system"
-  ansible.builtin.include_tasks: check_deps/main.yml
+- name: "Calculate a 'system user' UID, as required"
+  ansible.builtin.include_tasks: sys_user_uid/main.yml
+  when: cfg_user_is_system_user
 
-- name: "Add and configure user '{{ cfg_user_name }}'"
-  ansible.builtin.include_tasks: add_user/main.yml
+- name: "Calculate a hashed user password, as required"
+  ansible.builtin.include_tasks: calc_passwd/main.yml
+
+- name: "Apply all account config for user '{{ cfg_user_name }}'"
+  ansible.builtin.include_tasks: apply_config/main.yml
 
