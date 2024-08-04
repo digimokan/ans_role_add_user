@@ -70,8 +70,13 @@ Ansible role to add a user to the system and configure user account.
 
 ## Role Options
 
-* [dependencies.yml](../defaults/main/dependencies.yml)
-* [settings.yml](../defaults/main/settings.yml)
+Vars that must be defined when including the role in the playbook:
+
+  * [dependencies](../defaults/main/dependencies)
+
+Vars with default values, and can be overridden in the playbook:
+
+  * [overridable](../defaults/main/overridable)
 
 ## Contributing
 
