@@ -1,7 +1,3 @@
-- name: "Calculate a 'system user' UID, as required"
-  ansible.builtin.include_tasks: sys_user_uid/main.yml
-  when: cfg_user_is_system_user
-
 - name: "Calculate a hashed user password, as required"
   ansible.builtin.include_tasks: calc_passwd/main.yml
 

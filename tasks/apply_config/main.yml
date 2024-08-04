@@ -2,7 +2,6 @@
   ansible.builtin.user:
     name: "{{ cfg_user_name }}"
     system: "{{ cfg_user_is_system_user }}"
-    uid: "{{ freebsd_found_system_user_uid.stdout | default(omit) }}"
     password: "{{ hashed_salted_password | default(omit) }}"
     group: "{{ cfg_user_primary_group }}"
     groups: "{{ cfg_user_groups }}"
