@@ -3,7 +3,7 @@
   when: ansible_os_family == "FreeBSD"
 
 - name: "Check if user '{{ cfg_user_name }}' exists"
-  ansible.builtin.command: getent passwd {{ cfg_user_name|quote }}
+  ansible.builtin.command: getent passwd {{ cfg_user_name | quote }}
   # NOTE: getent returns 0 when key found, and 2 when key not found in database
   register: user_exists
   changed_when: user_exists.rc == 2
@@ -20,7 +20,11 @@
   # note: ansible.builtin.password_hash says passlib or crypt pthon mods must be installed.
   #       crypt is installed by default with ansible, however it is deprecated.
   ansible.builtin.set_fact:
-    hashed_salted_password: "{{ cfg_user_password | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}"
+    # hashed_salted_password: "{{ cfg_user_password | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}"
+    hashed_salted_password: "{{ cfg_user_password | password_hash(passwd_hashtype, passwd_salt) }}"
+  vars:
+    passwd_hashtype: "sha512"
+    passwd_salt: "{{ 65534 | random(seed=inventory_hostname) | string }}"
   when: cfg_user_password is defined
 
 - name: "Add user '{{ cfg_user_name }}' to the system, and configure user account"
