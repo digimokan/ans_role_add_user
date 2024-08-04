@@ -1,5 +1,13 @@
 # command to run to check that the python passlib module is installed
 # Note: passlib is preferred by ansible.builtin.password_hash
 # Ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
-cfg_user_check_passlib_installed_cmd: 'false'
+# cfg_user_check_passlib_installed_cmd: 'false'
+
+# select the password hash algorithm used
+# see options: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/password_hash_filter.html#parameter-hashtype
+cfg_user_password_hash_type: ""
+
+# salt added to plaintext password during hashing
+# see notes: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/password_hash_filter.html#parameter-salt
+cfg_user_password_salt: ""
 

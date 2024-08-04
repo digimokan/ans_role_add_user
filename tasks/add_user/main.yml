@@ -16,15 +16,8 @@
         (cfg_user_password is not defined)
 
 - name: "Calculate hashed, salted password from input cfg_user_password var"
-  # ref: https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html#hashing-and-encrypting-strings-and-passwords
-  # note: ansible.builtin.password_hash says passlib or crypt pthon mods must be installed.
-  #       crypt is installed by default with ansible, however it is deprecated.
   ansible.builtin.set_fact:
-    # hashed_salted_password: "{{ cfg_user_password | password_hash('sha512', 65534 | random(seed=inventory_hostname) | string) }}"
-    hashed_salted_password: "{{ cfg_user_password | password_hash(passwd_hashtype, passwd_salt) }}"
-  vars:
-    passwd_hashtype: "sha512"
-    passwd_salt: "{{ 65534 | random(seed=inventory_hostname) | string }}"
+    hashed_salted_password: "{{ cfg_user_password | password_hash(cfg_user_password_hash_type, cfg_user_password_salt) }}"
   when: cfg_user_password is defined
 
 - name: "Add user '{{ cfg_user_name }}' to the system, and configure user account"
