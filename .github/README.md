@@ -74,7 +74,7 @@ Vars that must be defined when including the role in the playbook:
 
   * [dependencies](../defaults/main/dependencies/main.yml)
 
-Vars with default values, and can be overridden in the playbook:
+Vars with default values, which can be overridden in the playbook:
 
   * [overridable](../defaults/main/overridable/main.yml)
 
