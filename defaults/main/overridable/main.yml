@@ -4,9 +4,9 @@ cfg_user_name: "admin"
 # on user creation, add user as a "system" user (i.e. a user with UID >= 1000)
 cfg_user_is_system_user: false
 
-# when defined, the role will set/update the password
-# when undefined, the role will check if a password has already been set
-# cfg_user_password: 'mypassword12345'
+# when set, the role will set/update the password
+# when empty string, the role will check if a password has already been set
+cfg_user_password: ''
 
 # set the user's primary group
 cfg_user_primary_group: "{{ cfg_user_name }}"

@@ -60,6 +60,8 @@ Ansible role to add a user to the system and configure user account.
            name: ans_role_config_user
          vars:
            cfg_user_name: "admin"
+           # Note: set on first run of this role:
+           # cfg_user_password: "some_password"
            cfg_user_primary_group: "admin"
            cfg_user_groups:
              - "wheel"

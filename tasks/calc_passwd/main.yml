@@ -5,14 +5,14 @@
   changed_when: user_exists.rc == 2
   failed_when: user_exists.rc != 0 and user_exists.rc != 2
 
-- name: "When user '{{ cfg_user_name }}' does not yet exist, check that cfg_user_password is defined"
+- name: "When user '{{ cfg_user_name }}' does not yet exist, check that cfg_user_password is not empty string"
   ansible.builtin.fail:
-    msg: "Since user does not exist, you must define cfg_user_password to set initial user password."
+    msg: "Since user does not exist, you must use cfg_user_password to set initial user password."
   when: (user_exists is changed) and
-        (cfg_user_password is not defined)
+        (cfg_user_password | length == 0)
 
 - name: "Calculate hashed, salted password from input cfg_user_password var"
   ansible.builtin.set_fact:
     hashed_salted_password: "{{ cfg_user_password | password_hash(cfg_user_password_hash_type, cfg_user_password_salt) }}"
-  when: cfg_user_password is defined
+  when: cfg_user_password | length > 0
 
