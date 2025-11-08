@@ -1,0 +1,32 @@
+- name: "Check if user '{{ cfg_user.user_name }}' exists"
+  ansible.builtin.command: getent passwd {{ cfg_user.user_name | quote }}
+  # NOTE: getent returns 0 when key found, and 2 when key not found in database
+  register: user_exists
+  changed_when: user_exists.rc == 2
+  failed_when: user_exists.rc != 0 and user_exists.rc != 2
+
+- name: "When user '{{ cfg_user.user_name }}' does not yet exist, check that cfg_user.password is not empty string"
+  ansible.builtin.fail:
+    msg: "Since user does not exist, you must use cfg_user.password to set initial user password."
+  when: (user_exists is changed) and
+        (cfg_user.password | length == 0)
+
+- name: "Calculate hashed, salted password from input cfg_user.password var"
+  ansible.builtin.set_fact:
+    hashed_salted_password: "{{ cfg_user.password | password_hash(cfg_user_password_hash_type, cfg_user_password_salt) }}"
+  when: cfg_user.password | length > 0
+
+- name: "Add user '{{ cfg_user.user_name }}' to the system, and configure user account"
+  ansible.builtin.user:
+    name: "{{ cfg_user.user_name }}"
+    system: "{{ cfg_user.is_system_user }}"
+    password: "{{ hashed_salted_password | default(omit) }}"
+    group: "{{ cfg_user.primary_group }}"
+    groups: "{{ cfg_user.groups }}"
+    create_home: "{{ cfg_user.create_home_dir_in_existing_filesystem }}"
+    home: "{{ cfg_user.path_to_home_dir }}"
+    comment: "{{ cfg_user.comment }}"
+    state: present
+  become: true
+  become_user: root
+

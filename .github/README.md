@@ -55,19 +55,24 @@ Ansible role to add a user to the system and configure user account.
    - hosts: localhost
      connection: local
      tasks:
-       - name: "Add and configure user 'admin'"
+       - name: "Configure all system users"
          ansible.builtin.include_role:
            name: ans_role_config_user
          vars:
-           cfg_user_name: "admin"
-           # Note: set on first run of this role:
-           # cfg_user_password: "some_password"
-           cfg_user_primary_group: "admin"
-           cfg_user_groups:
-             - "wheel"
-           cfg_user_create_home_dir_in_existing_filesystem: false
-           cfg_user_path_to_home_dir: "/home/admin"
-           cfg_user_comment: "admin"
+           cfg_user_password_hash_type: "sha512"
+           cfg_user_password_salt: "65534 | random(seed=inventory_hostname) | string"
+           cfg_users_to_add:
+             - user_name: user2
+               is_system_user: false
+               # Note: specify on first use, and set to empty string after
+               password: 'mypassword123'
+               primary_group: "user2"
+               groups:
+                 - "wheel"
+                 - "video"
+               create_home_dir_in_existing_filesystem: false
+               path_to_home_dir: "/home/user2"
+               comment: ""
    ```
 
 ## Role Options

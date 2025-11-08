@@ -1,25 +1,30 @@
-# user-name
-cfg_user_name: "admin"
+# add users, as required:
+#   user_name = name of user
+#   is_system_user = whether user is "system" user (user with UID >= 1000)
+#   password = when set, the role will set/update the password, and when
+#              empty string, the role will check if a password has already
+#              been set
+#   primary_group = user's primary group
+#   groups = make user member of ONLY these groups (not affect primary group)
+#   create_home_dir_in_existing_filesystem = on user creation, create
+#                                            /home/user2 directory in the
+#                                            existing filesystem
+#   path_to_home_dir = set the path to the user's home dir in the
+#                      `/user/password` file
+#   comment = _GECOS_ field in `/user/password`, used by apps such as LightDM
+cfg_users_to_add: []
+#   - user_name: user2
+#     is_system_user: false
+#     password: ''
+#     primary_group: "user2"
+#     groups:
+#       - "wheel"
+#       - "video"
+#     create_home_dir_in_existing_filesystem: false
+#     path_to_home_dir: "/home/user2"
+#     comment: ""
 
-# on user creation, add user as a "system" user (i.e. a user with UID >= 1000)
-cfg_user_is_system_user: false
-
-# when set, the role will set/update the password
-# when empty string, the role will check if a password has already been set
-cfg_user_password: ''
-
-# set the user's primary group
-cfg_user_primary_group: "{{ cfg_user_name }}"
-
-# make the user a member of ONLY these groups (does not affect primary group)
-cfg_user_groups: []
-
-# on user creation, create /home/user2 directory in the existing filesystem
-cfg_user_create_home_dir_in_existing_filesystem: false
-
-# set the path to the user's home dir in the `/user/password` file
-cfg_user_path_to_home_dir: ''
-
-# _GECOS_ field in `/user/password` file, used by apps such as LightDM
-cfg_user_comment: ''
+# remove groups, as required
+cfg_users_to_remove: []
+#   - { user_name: 'otheruser' }
 
